@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+ xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    >
+    <RelativeLayout
+               android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+        <TextView
+            android:id="@+id/text_view_language_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_view_language_1"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            android:padding="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="30dp"
+      />
+
+       <TextView
+           android:id="@+id/text_view_reverse"
+           android:layout_width="40dp"
+           android:layout_height="50dp"
+           android:drawableStart="@drawable/ic_baseline_swap_horiz_24"
+           android:layout_alignParentStart="true"
+           android:layout_marginStart="150dp"
+           />
+
+        <TextView
+            android:id="@+id/text_view_language_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_view_language_2"
+            android:textColor="@android:color/white"
+            android:textSize="25sp"
+            android:padding="16dp"
+          android:layout_alignParentRight="true"
+            android:layout_marginEnd="30dp"/>
+    </RelativeLayout>
+
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:paddingStart="12dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/custem_input"
+        android:paddingEnd="12dp"
+        android:textColor="@android:color/black"
+       android:clickable="true"
+        />
+
+
+    <Button
+        android:id="@+id/search_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_search_icon"
+        android:text="@string/search_btn"
+        android:textColor="@android:color/black"
+        android:drawablePadding="12dp"
+        android:paddingEnd="18dp"
+        android:paddingStart="16dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_search_button"
+
+        />
+
+    <ListView
+        android:layout_margin="16dp"
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="12dp"/>
+
+</LinearLayout>
+
