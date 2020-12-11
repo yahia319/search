@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/custom_main_activity"
     android:orientation="vertical"
     tools:context=".MainActivity"
     >
@@ -57,24 +57,6 @@
         android:background="@drawable/custem_input"
         android:paddingEnd="12dp"
         android:textColor="@android:color/black"
-       android:clickable="true"
-        />
-
-
-    <Button
-        android:id="@+id/search_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_search_icon"
-        android:text="@string/search_btn"
-        android:textColor="@android:color/black"
-        android:drawablePadding="12dp"
-        android:paddingEnd="18dp"
-        android:paddingStart="16dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/custom_search_button"
-
         />
 
     <ListView
@@ -82,7 +64,7 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="20dp"/>
 
 </LinearLayout>
 

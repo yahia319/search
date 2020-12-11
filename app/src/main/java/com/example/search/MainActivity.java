@@ -15,13 +15,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 TextView textViewLanguage1,textViewLanguage2,textViewReverse;
-SearchView searchView;
-Button searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,29 +48,64 @@ Button searchButton;
 
         });//end setOnClickListener
 
-        ArrayList<list_Item> Items = new ArrayList<list_Item>();
-        Items.add(new list_Item("Chicken","دجاجة"));
-        Items.add(new list_Item("Sheep ","خروف"));
-        Items.add(new list_Item("Rabbit","أرنب"));
-        Items.add(new list_Item("Monkey","قرد"));
-        Items.add(new list_Item("Giraffe","زرافة"));
-        Items.add(new list_Item("Bear","دب"));
-        Items.add(new list_Item("Elephant","فيل"));
-        Items.add(new list_Item("Cow","بقرة"));
-        Items.add(new list_Item("Horse","حصان"));
 
-        myAdapter myAdapter = new myAdapter(Items);
 
-        ListView listView = findViewById(R.id.list_view);
-        listView.setAdapter(myAdapter);
+
+
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(getAssets().open("myFile.txt")));
+            String mLine;
+            ArrayList<list_Item> Items = new ArrayList<list_Item>();
+            while ((mLine = reader.readLine()) != null){
+
+                String[] element =   mLine.split("#");
+                Items.add(new list_Item(element[0],element[1]));
+
+            }//end while
+            myAdapter myAdapter = new myAdapter(Items);
+
+            ListView listView = findViewById(R.id.list_view);
+            listView.setAdapter(myAdapter);
+        }//end try
+
+        catch (IOException e){
+            e.printStackTrace();
+        }//end catch
+
+        finally {
+            if (reader != null){
+                try {
+                    reader.close();
+                }//end try
+                catch (IOException e){
+                    e.printStackTrace();
+                }//end catch
+
+            }//end if
+
+        }//end finally
 
 
     }//end onCreate
 
-  class myAdapter extends BaseAdapter{
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+
+        return false;
+    }
+
+
+    class myAdapter extends BaseAdapter{
         ArrayList<list_Item> Items = new ArrayList<list_Item>();
 
-   myAdapter( ArrayList<list_Item> Items ){
+        myAdapter( ArrayList<list_Item> Items ){
             this.Items=Items;
         }
 

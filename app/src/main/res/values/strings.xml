@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">search</string>
+    <string name="app_name">Dictionary</string>
     <string name="text_view_language_1">English</string>
     <string name="text_view_language_2">Arabic</string>
     <string name="edit_text_search">phone mobile</string>
