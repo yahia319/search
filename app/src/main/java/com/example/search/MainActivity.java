@@ -7,23 +7,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
-TextView textViewLanguage1,textViewLanguage2,textViewReverse;
-
+    TextView textViewLanguage1,textViewLanguage2,textViewReverse;
+    String[] elements;
+    ArrayList<list_Item> Items;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,17 +52,21 @@ TextView textViewLanguage1,textViewLanguage2,textViewReverse;
         try {
             reader = new BufferedReader(new InputStreamReader(getAssets().open("myFile.txt")));
             String mLine;
-            ArrayList<list_Item> Items = new ArrayList<list_Item>();
+           Items = new ArrayList<list_Item>();
+int count =0;
             while ((mLine = reader.readLine()) != null){
 
-                String[] element =   mLine.split("#");
-                Items.add(new list_Item(element[0],element[1]));
-
+                elements =   mLine.split("#");
+                Items.add(new list_Item(elements[count], elements[count+1]));
+count = count +1;
             }//end while
             myAdapter myAdapter = new myAdapter(Items);
 
             ListView listView = findViewById(R.id.list_view);
             listView.setAdapter(myAdapter);
+            SearchView searchView = findViewById(R.id.search_view);
+            String text=  searchView.getQuery().toString();
+            onQueryTextSubmit(text);
         }//end try
 
         catch (IOException e){
@@ -87,11 +87,13 @@ TextView textViewLanguage1,textViewLanguage2,textViewReverse;
         }//end finally
 
 
+
     }//end onCreate
+
 
     @Override
     public boolean onQueryTextSubmit(String s) {
-
+search(s);
         return false;
     }
 
@@ -99,6 +101,15 @@ TextView textViewLanguage1,textViewLanguage2,textViewReverse;
     public boolean onQueryTextChange(String s) {
 
         return false;
+    }
+    public void search(String s){
+     for (String element:elements){
+
+         if (!element.equals(s)){
+            Items.remove(element);
+         }
+     }
+
     }
 
 
